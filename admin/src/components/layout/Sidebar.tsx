@@ -20,6 +20,9 @@ import {
   MenuItem,
 } from '@mui/material';
 import DashboardIcon from '@mui/icons-material/Dashboard';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import ReceiptLongIcon from '@mui/icons-material/ReceiptLong';
+
 import PeopleIcon from '@mui/icons-material/People';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
@@ -195,6 +198,22 @@ export const Sidebar = ({ open, onClose, collapsed }: SidebarProps) => {
     const items: MenuItem[] = [
       { icon: <DashboardIcon />, path: '/dashboard', title: 'Dashboard' },
     ];
+
+    if (isAdmin) {
+      items.push({
+        icon: <AdminPanelSettingsIcon />,
+        title: "Payroll",
+        submenu: [{
+          icon: <HowToRegIcon />,
+          path: "/payroll/manage-attendance",
+          title: "Manage Attendance",
+        }, {
+          icon: <ReceiptLongIcon />,
+          path: "/payroll/attendance-logs",
+          title: "Attendance Logs",
+        }]
+      })
+    }
 
     // Add module menu items after Dashboard (each module with its forms as submenu)
     if (moduleMenuItems.length > 0) {

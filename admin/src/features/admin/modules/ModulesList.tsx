@@ -241,7 +241,7 @@ export const ModulesList = () => {
         icon="Build"
         fallbackIcon={DescriptionIcon}
         actions={actionButtons}
-        sx={{ mb: 0.5, borderRadius: '10px', padding: 1.5 }}
+        sx={{ mb: 0.5,  padding: 1.5 }}
       />
 
       <PageContent>

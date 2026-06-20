@@ -408,7 +408,7 @@ export const FormBuilder = () => {
             </Button>
           </>
         }
-        sx={{ mb: 0.5, borderRadius: '10px', padding: 1.5 }}
+        sx={{ mb: 0.5, padding: 1.5 }}
       />
 
       <PageContent sx={{ overflow: 'hidden', display: 'flex', flexDirection: 'column', p: 1.5 }}>

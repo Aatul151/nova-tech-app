@@ -63,7 +63,7 @@ export const AppLayout = ({ children }: AppLayoutProps) => {
         <Box
           sx={{
             flexGrow: 1,
-            p: isMobile ? 2 : 5,
+            p: isMobile ? 2 : "40px 10px",
             mt: isMobile ? '60px' : '40px',
             backgroundColor: alpha(theme.palette.primary.main, 0.02),
             minHeight: 'calc(100vh - 64px)',

@@ -233,6 +233,7 @@ import CardMembership from '@mui/icons-material/CardMembership';
 import WorkspacePremiumOutlined from '@mui/icons-material/WorkspacePremiumOutlined';
 import SchoolOutlined from '@mui/icons-material/SchoolOutlined';
 import ClassOutlined from '@mui/icons-material/ClassOutlined';
+import { Celebration, FactCheck } from '@mui/icons-material';
 
 export const ICON_MAP: Record<string, ComponentType<any>> = {
   // Admin Panel
@@ -403,6 +404,8 @@ export const ICON_MAP: Record<string, ComponentType<any>> = {
   Apartment,
   Domain,
   Storefront,
+  FactCheck,
+  Celebration,
 
   // School Management
   Class,

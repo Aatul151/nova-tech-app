@@ -14,6 +14,8 @@ import { Settings } from '@/features/settings/Settings';
 import { LoadingScreen } from '@/components/loading/LoadingScreen';
 import { AuthGuard } from './AuthGuard';
 import { RoleGuard } from './RoleGuard';
+import { ManageAttendance } from '@/features/payroll/ManageAttendance';
+import { AttendanceLogs } from '@/features/payroll/AttendanceLogs';
 
 export type RouteConfigItem = {
   path: string;
@@ -129,6 +131,18 @@ export const protectedRoutesConfig: RouteConfigItem[] = [
   {
     path: '/dashboard',
     element: <Dashboard />,
+    requiresAuth: true,
+    useLayout: true,
+  },
+  {
+    path: '/payroll/manage-attendance',
+    element: <ManageAttendance />,
+    requiresAuth: true,
+    useLayout: true,
+  },
+    {
+    path: '/payroll/attendance-logs',
+    element: <AttendanceLogs />,
     requiresAuth: true,
     useLayout: true,
   },

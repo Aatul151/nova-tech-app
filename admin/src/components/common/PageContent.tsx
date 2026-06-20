@@ -22,7 +22,7 @@ export const PageContent = ({ children, sx }: PageContentProps) => {
         minHeight: 0,
         backgroundColor: 'background.paper',
         padding: { xs: 2, sm: 3 },
-        borderRadius: '8px',
+        borderRadius: '0px 0px 10px 10px',
         border: (theme) => `1px solid ${theme.palette.divider}`,
         boxShadow: (theme) => theme.palette.mode === 'light' 
           ? '0 2px 8px rgba(0,0,0,0.06)' 

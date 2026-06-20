@@ -39,7 +39,7 @@ export const PageHeader = ({
         mb: 1,
         backgroundColor: 'background.paper',
         padding: 1.5,
-        borderRadius: '10px',
+        borderRadius: '10px 10px 0px 0px',
         border: (theme) => `1px solid ${theme.palette.divider}`,
         flexShrink: 0,
         ...sx,
