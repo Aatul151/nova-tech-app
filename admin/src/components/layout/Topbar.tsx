@@ -205,7 +205,7 @@ export const Topbar = ({ onMenuClick, sidebarWidth, sidebarCollapsed, onToggleSi
           >
             <MenuItem onClick={handleMenuClose}>
               <AccountCircleIcon sx={{ mr: 1.5, fontSize: 20 }} />
-              Profile
+              {user?.name}
             </MenuItem>
             <MenuItem onClick={handleLogout}>
               <LogoutIcon sx={{ mr: 1.5, fontSize: 20 }} />

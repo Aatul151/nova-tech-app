@@ -127,21 +127,21 @@ export const Sidebar = ({ open, onClose, collapsed }: SidebarProps) => {
   const getModuleName = (form: FormSchema, modules: Module[]): string => {
     const moduleId = getModuleId(form.module);
     if (!moduleId) return 'Other';
-    
+
     // Try to find module in the modules list
     const module = modules.find((m) => m._id === moduleId || m.name === moduleId);
     if (module) return module.name;
-    
+
     // If module is a string and not found in list, return it as is
     if (typeof form.module === 'string') return form.module;
-    
+
     return 'Other';
   };
 
   // Group forms by module
   const formsByModule = useMemo(() => {
     const grouped: Record<string, FormSchema[]> = {};
-    
+
     allowedForms.forEach((form) => {
       const moduleName = getModuleName(form, allModules);
       if (!grouped[moduleName]) {
@@ -156,7 +156,7 @@ export const Sidebar = ({ open, onClose, collapsed }: SidebarProps) => {
   // Build module menu items with forms as submenus
   const moduleMenuItems: MenuItem[] = useMemo(() => {
     const items: MenuItem[] = [];
-    
+
     // Get all module names and sort them (put "Other" at the end)
     const moduleNames = Object.keys(formsByModule).sort((a, b) => {
       if (a === 'Other') return 1;
@@ -170,7 +170,7 @@ export const Sidebar = ({ open, onClose, collapsed }: SidebarProps) => {
 
       // Find the module to get its icon
       const module = allModules.find((m) => m.name === moduleName);
-      const moduleIcon = module?.icon 
+      const moduleIcon = module?.icon
         ? getAppDynamicIcon(module.icon, DescriptionIcon)
         : <DescriptionIcon />;
 
@@ -202,11 +202,11 @@ export const Sidebar = ({ open, onClose, collapsed }: SidebarProps) => {
     }
 
     // Add Admin menu if user is admin or superadmin
-    if (isAdmin) {
+    if (isSuperAdmin) {
       items.push({
         icon: <AdminPanelSettingsIcon />,
         title: 'Admin',
-        submenu: adminMenuItems,
+        submenu: adminMenuItems
       });
     }
 
@@ -246,6 +246,8 @@ export const Sidebar = ({ open, onClose, collapsed }: SidebarProps) => {
   }, [location.pathname, menuItems, openSubmenus]);
 
   const handleNavigation = (path: string) => {
+    //reset selected parent menu
+    setOpenSubmenus({});
     navigate(path);
     if (isMobile) {
       onClose();
@@ -647,16 +649,16 @@ export const Sidebar = ({ open, onClose, collapsed }: SidebarProps) => {
               }}
             >
               <AdminPanelSettingsIcon sx={{ fontSize: 24 }} />
+
             </Box>
             <Typography
               variant="h6"
               sx={{
                 fontWeight: 600,
                 color: 'text.primary',
-                fontSize: '1.125rem',
               }}
             >
-              Admin Panel
+              Payroll
             </Typography>
           </Box>
         )}
@@ -690,8 +692,6 @@ export const Sidebar = ({ open, onClose, collapsed }: SidebarProps) => {
       <Box
         sx={{
           borderTop: `1px solid ${theme.palette.divider}`,
-          pt: 0.5,
-          pb: 0.5,
         }}
       >
         <List sx={{ px: 0, py: 0 }}>
@@ -704,17 +704,18 @@ export const Sidebar = ({ open, onClose, collapsed }: SidebarProps) => {
                   px: collapsed ? 1.5 : 2,
                   py: 0.5,
                   justifyContent: collapsed ? 'center' : 'flex-start',
-                  color: theme.palette.error.main,
+                  backgroundColor: theme.palette.primary.light,
+                  color: theme.palette.primary.contrastText,
                   '&:hover': {
-                    backgroundColor: alpha(theme.palette.error.main, 0.08),
+                    backgroundColor: theme.palette.primary.dark,
                   },
                 }}
               >
                 <ListItemIcon
                   sx={{
                     minWidth: collapsed ? 0 : 32,
+                    color: theme.palette.primary.contrastText,
                     justifyContent: 'center',
-                    color: theme.palette.error.main,
                     '& svg': {
                       fontSize: '1.1rem',
                     },

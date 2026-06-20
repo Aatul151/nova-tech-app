@@ -62,7 +62,7 @@ export const AuthLayout = ({ children, title, subtitle }: AuthLayoutProps) => {
               textShadow: '0 2px 10px rgba(0,0,0,0.3)',
             }}
           >
-            Admin Panel
+            Nova Tech Engineers
           </Typography>
           <Typography
             variant="h6"
@@ -74,7 +74,7 @@ export const AuthLayout = ({ children, title, subtitle }: AuthLayoutProps) => {
               textShadow: '0 1px 5px rgba(0,0,0,0.2)',
             }}
           >
-            Manage your business with our powerful admin dashboard
+            Manage your payroll with our powerful management application
           </Typography>
           
           {/* Decorative Elements */}

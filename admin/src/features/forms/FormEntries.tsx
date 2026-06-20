@@ -61,6 +61,7 @@ export const FormEntries = () => {
   const [filters, setFilters] = useState<Record<string, any>>({});
   const [importing, setImporting] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const [drawerWidth, setDrawerWidth] = useState(1000);
 
   // Decode form name from URL (in case it's encoded)
   const decodedFormName = formName ? decodeURIComponent(formName) : null;
@@ -122,6 +123,12 @@ export const FormEntries = () => {
     return true;
   }, [user?._id, rawFormData]);
 
+  useEffect(() => {
+    if (formDialogOpen) {
+      setDrawerWidth(formMode == 'view' ? 600 : 1000);
+    }
+  }, [formDialogOpen, formMode])
+
   // Fetch access rule when form schema is loaded
   useEffect(() => {
     const fetchAccessRule = async () => {
@@ -150,6 +157,8 @@ export const FormEntries = () => {
   // Check if this is a single record form (need to check early for pagination)
   const isSingleRecordForm = formSchema?.settings?.isSingleRecordForm === true;
 
+  //see setting to display form in modal, drawer or plain
+  const formDisplayMode = formSchema?.settings?.formDisplayMode || "drawer";
 
   // Pagination state - initialize with default, will be updated when formSchema loads
   const [paginationModel, setPaginationModel] = useState({
@@ -1273,7 +1282,7 @@ export const FormEntries = () => {
 
         {/* Add/Edit/View Form - Plain variant for single record forms, Drawer for regular forms */}
         <FormContainer
-          variant={isSingleRecordForm ? 'plain' : 'drawer'}
+          variant={isSingleRecordForm ? 'plain' : formDisplayMode}
           open={isSingleRecordForm ? true : formDialogOpen}
           formSysName={decodedFormName || undefined}
           onSubmit={handleFormSubmit}
@@ -1337,7 +1346,7 @@ export const FormEntries = () => {
             setFormMode('add');
           }}
           anchor="right"
-          drawerWidth={600}
+          drawerWidth={drawerWidth}
         />
       </PageContent>
 

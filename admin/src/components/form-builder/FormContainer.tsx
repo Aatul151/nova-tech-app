@@ -5,6 +5,7 @@ import {
   Box,
   CircularProgress,
   Alert,
+  IconButton,
 } from '@mui/material';
 import { useQuery } from '@tanstack/react-query';
 import { formsAPI, FormSchema } from '@/api/forms';
@@ -12,6 +13,7 @@ import { transformFormSchema } from '@/utils/formUtils';
 import { FormRenderer } from '@aatulwork/customform-renderer';
 import { formRendererServices } from '@/utils/formRendererServices';
 import { AppDrawer } from '@/components/common/AppDrawer';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface FormContainerProps {
   // Form identification - use one of these
@@ -69,7 +71,7 @@ export const FormContainer = ({
   maxWidth = 'md',
   fullWidth = true,
   anchor = 'right',
-  drawerWidth = 600,
+  drawerWidth = 1000,
   disableEscapeKeyDown = false,
 }: FormContainerProps) => {
   // Determine if we need to fetch formSchema
@@ -133,7 +135,7 @@ export const FormContainer = ({
       return;
     }
     // Prevent closing on backdrop click if loading
-    if (reason === 'backdropClick' && overallLoading) {
+    if (reason === 'backdropClick') {
       return;
     }
     onClose();
@@ -239,8 +241,8 @@ export const FormContainer = ({
         : typeof formSchema.module === 'string'
           ? formSchema.module
           : (formSchema.module as { _id?: string; name?: string })._id ??
-            (formSchema.module as { _id?: string; name?: string }).name ??
-            undefined,
+          (formSchema.module as { _id?: string; name?: string }).name ??
+          undefined,
   };
 
   const formRendererProps = {
@@ -273,8 +275,22 @@ export const FormContainer = ({
         PaperProps={{
           sx: { maxHeight: '90vh' },
         }}
+
       >
-        <DialogTitle>{displayTitle}</DialogTitle>
+        <DialogTitle sx={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+        }}>
+          {displayTitle}
+          <IconButton
+            onClick={handleClose}
+            disabled={overallLoading}
+            size="small"
+          >
+            <CloseIcon />
+          </IconButton>
+        </DialogTitle>
         <DialogContent dividers>
           <FormRenderer {...formRendererProps} />
         </DialogContent>

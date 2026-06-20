@@ -68,7 +68,7 @@ export const FileDisplay = ({ fieldValue, onDownloadError }: FileDisplayProps) =
     if (files.length === 1) {
         const fileData = files[0];
         const displayName = fileData.originalName || fileData.fileName || 'Download file';
-
+console.log("DDDDDDDDDDDDDDDDDDD")
         return (
             <>
                 <Box sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
